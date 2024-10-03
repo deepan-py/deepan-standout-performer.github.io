@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote for Deepan - Outstanding Performance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+        nav {
+            background: #3498db;
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            background: rgba(52, 152, 219, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            color: #f39c12;
+        }
+        header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin-bottom: 20px;
+            font-size: 3em;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .section {
+            padding: 60px 5%;
+            margin-bottom: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .section h2 {
+            color: #3498db;
+            margin-bottom: 30px;
+        }
+        .poster {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            color: #fff;
+            padding: 60px 5%;
+            text-align: center;
+            margin: 40px 0;
+            border-radius: 10px;
+            transform: skew(-5deg);
+        }
+        .poster > * {
+            transform: skew(5deg);
+        }
+        .poster h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .poster p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        footer {
+            background: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+        }
+        .achievement-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .achievement-item {
+            background: #f8f9fa;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .achievement-item:hover {
+            background: #e9ecef;
+            transform: translateX(10px);
+        }
+        .achievement-details {
+            display: none;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 0 0 5px 5px;
+            margin-top: 10px;
+        }
+        .vote-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .vote-button:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+        #skills-chart {
+            width: 100%;
+            height: 300px;
+            margin-top: 30px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#vote">Vote</a></li>
+                <li><a href="#about">About Deepan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="container">
+            <h1>Vote for Deepan</h1>
+            <p>Recognizing Outstanding Performance at Roanuz</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="achievements" class="section">
+            <h2>Key Achievements</h2>
+            <ul class="achievement-list">
+                <li class="achievement-item" onclick="toggleDetails(this)">
+                    <h3>Fantasy Points and Credits API</h3>
+                    <div class="achievement-details">
+                        Developed a core component achieving 80% faster performance, directly impacting the majority of our cricketapi customers who build fantasy apps.
+                    </div>
+                </li>
+                <li class="achievement-item" onclick="toggleDetails(this)">
+                    <h3>Massive Data Import</h3>
+                    <div class="achievement-details">
+                        Successfully imported 2 months of MG101 data, encompassing over 1000 matches and 20,000 players, significantly enhancing our product's depth.
+                    </div>
+                </li>
+                <li class="achievement-item" onclick="toggleDetails(this)">
+                    <h3>ANTS Performance Improvements</h3>
+                    <div class="achievement-details">
+                        Played a key role in optimizing our systems, contributing to overall efficiency and improved user experience with faster response times.
+                    </div>
+                </li>
+                <li class="achievement-item" onclick="toggleDetails(this)">
+                    <h3>Technical Skill Expansion</h3>
+                    <div class="achievement-details">
+                        Expanded technical stack to include AWS Redshift, Lambda, and EC2, enabling contribution to more complex projects and broader tech infrastructure.
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="vote" class="section">
+            <h2>Why Your Vote Matters</h2>
+            <p>Your participation in this voting process is crucial. It helps us recognize and appreciate the hard work and dedication of our colleagues. Whether you choose to vote for Deepan or another deserving candidate, your voice matters in fostering a culture of appreciation and excellence at Roanuz.</p>
+            <a href="#" class="vote-button">Cast Your Vote</a>
+        </section>
+
+        <div class="poster">
+            <h2>Vote for Deepan</h2>
+            <p>✓ Innovative Solutions</p>
+            <p>✓ Performance Improvements</p>
+            <p>✓ Technical Growth</p>
+            <p>✓ Teamwork and Dedication</p>
+            <p><strong>Together, let's recognize excellence!</strong></p>
+        </div>
+
+        <section id="about" class="section">
+            <h2>About Deepan</h2>
+            <p>Deepan is a dedicated team member who has shown exceptional growth and contribution to Roanuz. His work on the Fantasy Points and Credits API, data importation, and system optimization has significantly improved our products and services. Deepan's commitment to expanding his technical skills demonstrates his passion for continuous learning and improvement.</p>
+            <h3>Skills Growth</h3>
+            <canvas id="skills-chart"></canvas>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Deepan's Campaign. Thank you for your consideration and support!</p>
+    </footer>
+
+    <script>
+        // Navbar animation
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.getElementById('navbar').classList.add('scrolled');
+            } else {
+                document.getElementById('navbar').classList.remove('scrolled');
+            }
+        });
+
+        // Achievement details toggle
+        function toggleDetails(element) {
+            var details = element.querySelector('.achievement-details');
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+            } else {
+                details.style.display = 'block';
+            }
+        }
+
+        // Skills chart
+        var ctx = document.getElementById('skills-chart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Python', 'AWS Redshift', 'AWS Lambda', 'AWS EC2', 'API Development', 'Data Management'],
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [90, 75, 80, 70, 85, 80],
+                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                    borderColor: 'rgba(52, 152, 219, 1)',
+                    pointBackgroundColor: 'rgba(52, 152, 219, 1)'
+                }]
+            },
+            options: {
+                scale: {
+                    ticks: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
