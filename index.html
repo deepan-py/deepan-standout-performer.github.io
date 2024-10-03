@@ -57,6 +57,14 @@
         nav a:hover {
             color: #f39c12;
         }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+        }
         header {
             background: linear-gradient(135deg, #3498db, #8e44ad);
             color: #fff;
@@ -251,16 +259,31 @@
             .testimonial-carousel {
                 height: 250px;
             }
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 20px;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: #3498db;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav li {
+                margin: 10px 0;
+            }
         }
         
         @media (max-width: 480px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            nav li {
-                margin: 5px 0;
-            }
             header h1 {
                 font-size: 1.8em;
             }
@@ -282,7 +305,8 @@
 <body>
     <nav id="navbar">
         <div class="container">
-            <ul>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul id="menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
@@ -389,6 +413,19 @@
             } else {
                 document.getElementById('navbar').classList.remove('scrolled');
             }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('#menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu').classList.remove('show');
+            });
         });
 
         // Improved Testimonial carousel
