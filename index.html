@@ -9,8 +9,8 @@
 <body>
     <nav id="navbar">
         <div class="container">
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-            <ul id="menu">
+            <button class="burger" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
@@ -65,9 +65,9 @@
                     <q>Sometimes you just wonder how Deepan knows so much. The guy is a DEEP pit of knowledge.</q>
                     <p>- Hari</p>
                 </div>
-
-                <button class="carousel-button prev" onclick="moveTestimonial(-1)">&#10094;</button>
-                <button class="carousel-button next" onclick="moveTestimonial(1)">&#10095;</button>
+    
+                <button class="carousel-button prev" onclick="moveTestimonial(-1)">&lt;</button>
+                <button class="carousel-button next" onclick="moveTestimonial(1)">&gt;</button>
             </div>
             <div class="carousel-dots"></div>
         </section>
@@ -179,6 +179,19 @@
 
         // Auto-advance carousel every 5 seconds
         setInterval(() => moveTestimonial(1), 5000);
+
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('show');
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('show');
+            });
+        });
+
     </script>
 </body>
 </html>
