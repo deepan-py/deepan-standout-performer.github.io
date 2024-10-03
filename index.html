@@ -149,13 +149,43 @@
             margin-bottom: 10px;
             font-size: 1.2em;
         }
+        
+        .achievement-item {
+            position: relative;
+            padding-right: 30px;
+        }
+        
         .achievement-item p {
             display: -webkit-box;
             -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
+            transition: all 0.3s ease;
         }
+        
+        .achievement-item.expandable {
+            cursor: pointer;
+        }
+        
+        .achievement-item.expanded p {
+            display: block;
+            -webkit-line-clamp: unset;
+        }
+        
+        .achievement-item.expandable::after {
+            content: '+';
+            position: absolute;
+            right: 15px;
+            top: 20px;
+            font-size: 1.2em;
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .achievement-item.expanded::after {
+            content: '−';
+        }
+    
         .vote-button {
             display: inline-block;
             padding: 12px 25px;
@@ -170,6 +200,8 @@
             background-color: #c0392b;
             transform: scale(1.05);
         }
+ 
+
         .testimonial-carousel {
             position: relative;
             overflow: hidden;
@@ -241,6 +273,53 @@
         }
         .dot.active {
             background-color: #3498db;
+        }
+
+
+        .skills-section {
+            margin-top: 40px;
+        }
+        
+        .skills-section h3 {
+            margin-bottom: 20px;
+            color: #3498db;
+            font-size: 1.5em;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .skill-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        
+        .skill-item h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .skill-item p {
+            font-size: 0.9em;
+            color: #7f8c8d;
         }
         
         @media (max-width: 768px) {
@@ -327,19 +406,19 @@
         <section id="achievements" class="section">
             <h2>Key Achievements</h2>
             <ul class="achievement-list">
-                <li class="achievement-item">
+                <li class="achievement-item" onclick="toggleAchievement(this)">
                     <h3>Fantasy Points and Credits API</h3>
                     <p>Developed the Fantasy Points and Credits API, a core component for our cricketapi customers (most of our customers build fantasy apps), which helped migrate fantasy systems to ANTS and achieved 80% faster performance in Fantasy APIs.</p>
                 </li>
-                <li class="achievement-item">
+                <li class="achievement-item" onclick="toggleAchievement(this)">
                     <h3>Massive Data Import</h3>
                     <p>Successfully imported 2 months of MG101 data, encompassing over 1000 matches and 20,000 players.</p>
                 </li>
-                <li class="achievement-item">
+                <li class="achievement-item" onclick="toggleAchievement(this)">
                     <h3>ANTS Performance Improvements</h3>
                     <p>Played a key role in optimizing our systems, contributing to overall efficiency and improved user experience with faster response times.</p>
                 </li>
-                <li class="achievement-item">
+                <li class="achievement-item" onclick="toggleAchievement(this)">
                     <h3>Technical Skill Expansion</h3>
                     <p>Expanded technical stack to include AWS Redshift, Lambda, and EC2, enabling contribution to more complex projects and broader tech infrastructure.</p>
                 </li>
@@ -385,20 +464,31 @@
 
         <section id="about" class="section">
             <h2>About Deepan</h2>
-            <p>I am a passionate Python developer with a strong focus on API development. My enthusiasm for learning drives me to stay updated with the latest technologies and trends in the tech industry. I enjoy exploring innovative solutions and incorporating them into my projects to enhance efficiency and functionality. My goal is to leverage my skills and knowledge to create impactful applications and contribute to exciting developments in the field.</p>
-            <br>
-            <h3>Key Skills</h3>
-            <ul class="skills-list">
-                <li>
-                    <h3>Python</h3>
-                </li>
-                <li>
-                    <h3>AWS Services (Redshift, Lambda, EC2)</h3>
-                </li>
-                <li>
-                    <h3>API Development</h3>
-                </li>
-            </ul>
+            <p>I am a passionate Python developer with a strong focus on API development. My enthusiasm for learning drives me to stay updated with the latest technologies and trends in the tech industry. I enjoy exploring innovative solutions and incorporating them into my projects to enhance efficiency and functionality. My goal is to leverage my skills and knowledge to create impactful applications and contribute to exciting developments in the field.</p>            <div class="skills-section">
+                <h3>Key Skills</h3>
+                <ul class="skills-list">
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-python"></i></div>
+                        <h4>Python</h4>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                        <h4>AWS Redshift</h4>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                        <h4>AWS Lambda</h4>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                        <h4>Apache Kafka</h4>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                        <h4>AWS ALB</h4>
+                    </li>
+                </ul>
+            </div>
         </section>
     </div>
 
@@ -455,6 +545,26 @@
             testimonials[currentTestimonial].classList.add('active');
             dots[currentTestimonial].classList.add('active');
         }
+
+        // Check if achievements are truncated and add expand functionality
+        function initializeAchievements() {
+            const achievements = document.querySelectorAll('.achievement-item');
+            achievements.forEach(achievement => {
+                const content = achievement.querySelector('p');
+                if (content.scrollHeight > content.clientHeight) {
+                    achievement.classList.add('expandable');
+                    achievement.addEventListener('click', () => toggleAchievement(achievement));
+                }
+            });
+        }
+
+        // Toggle achievement expansion
+        function toggleAchievement(element) {
+            element.classList.toggle('expanded');
+        }
+
+        // Initialize achievements after the page loads
+        window.addEventListener('load', initializeAchievements);
 
         // Initialize first dot as active
         goToTestimonial(0);
