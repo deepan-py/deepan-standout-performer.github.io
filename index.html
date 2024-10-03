@@ -43,9 +43,10 @@
             list-style: none;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
         nav li {
-            margin: 0 20px;
+            margin: 5px 10px;
         }
         nav a {
             color: #fff;
@@ -59,12 +60,12 @@
         header {
             background: linear-gradient(135deg, #3498db, #8e44ad);
             color: #fff;
-            padding: 100px 0;
+            padding: 60px 0;
             text-align: center;
         }
         header h1 {
             margin-bottom: 20px;
-            font-size: 3em;
+            font-size: 2.5em;
             animation: fadeInUp 1s ease-out;
         }
         @keyframes fadeInUp {
@@ -78,7 +79,7 @@
             }
         }
         .section {
-            padding: 60px 5%;
+            padding: 40px 5%;
             margin-bottom: 30px;
             background: #fff;
             border-radius: 10px;
@@ -91,14 +92,15 @@
         }
         .section h2 {
             color: #3498db;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
         }
         .poster {
             background: linear-gradient(45deg, #3498db, #2ecc71);
             color: #fff;
-            padding: 60px 5%;
+            padding: 40px 5%;
             text-align: center;
-            margin: 40px 0;
+            margin: 30px 0;
             border-radius: 10px;
             transform: skew(-5deg);
         }
@@ -106,18 +108,18 @@
             transform: skew(5deg);
         }
         .poster h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
         .poster p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
+            font-size: 1.1em;
+            margin-bottom: 15px;
         }
         footer {
             background: #3498db;
             color: #fff;
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
         }
         .achievement-list, .skills-list {
             list-style-type: none;
@@ -125,8 +127,8 @@
         }
         .achievement-item, .skills-list li {
             background: #f8f9fa;
-            margin-bottom: 25px;
-            padding: 25px;
+            margin-bottom: 20px;
+            padding: 20px;
             border-radius: 5px;
             transition: all 0.3s ease;
         }
@@ -136,11 +138,19 @@
         }
         .achievement-item h3, .skills-list li h3 {
             color: #2c3e50;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .achievement-item p {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .vote-button {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 12px 25px;
             background-color: #e74c3c;
             color: white;
             text-decoration: none;
@@ -156,7 +166,7 @@
             position: relative;
             overflow: hidden;
             padding: 20px 0;
-            height: 250px;
+            height: 220px;
         }
         .testimonial {
             position: absolute;
@@ -165,7 +175,8 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -175,10 +186,11 @@
         }
         .testimonial.active {
             opacity: 1;
+            visibility: visible;
         }
         .testimonial q {
             font-style: italic;
-            font-size: 1.1em;
+            font-size: 1em;
             display: block;
             margin-bottom: 10px;
         }
@@ -192,7 +204,7 @@
             background: rgba(52, 152, 219, 0.7);
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 12px;
             cursor: pointer;
             transition: background 0.3s ease;
             z-index: 10;
@@ -201,10 +213,10 @@
             background: rgba(52, 152, 219, 1);
         }
         .carousel-button.prev {
-            left: 10px;
+            left: 5px;
         }
         .carousel-button.next {
-            right: 10px;
+            right: 5px;
         }
         .carousel-dots {
             text-align: center;
@@ -212,8 +224,8 @@
         }
         .dot {
             display: inline-block;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background-color: #bbb;
             margin: 0 5px;
@@ -221,6 +233,49 @@
         }
         .dot.active {
             background-color: #3498db;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .section h2 {
+                font-size: 1.5em;
+            }
+            .poster h2 {
+                font-size: 1.8em;
+            }
+            .achievement-item h3, .skills-list li h3 {
+                font-size: 1.1em;
+            }
+            .testimonial-carousel {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav li {
+                margin: 5px 0;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            .section {
+                padding: 30px 5%;
+            }
+            .poster {
+                transform: none;
+            }
+            .poster > * {
+                transform: none;
+            }
+            .testimonial-carousel {
+                height: 280px;
+            }
         }
     </style>
 </head>
@@ -250,19 +305,19 @@
             <ul class="achievement-list">
                 <li class="achievement-item">
                     <h3>Fantasy Points and Credits API</h3>
-                    <p>Developed a core component achieving 80% faster performance, directly impacting the majority of our cricketapi customers who build fantasy apps. This significant improvement has streamlined our services and enhanced user satisfaction.</p>
+                    <p>Developed the Fantasy Points and Credits API, a core component for our cricketapi customers (most of our customers build fantasy apps), which helped migrate fantasy systems to ANTS and achieved 80% faster performance in Fantasy APIs.</p>
                 </li>
                 <li class="achievement-item">
                     <h3>Massive Data Import</h3>
-                    <p>Successfully imported 2 months of MG101 data, encompassing over 1000 matches and 20,000 players. This massive data integration has significantly enhanced our product's depth, providing users with a more comprehensive and valuable experience.</p>
+                    <p>Successfully imported 2 months of MG101 data, encompassing over 1000 matches and 20,000 players.</p>
                 </li>
                 <li class="achievement-item">
                     <h3>ANTS Performance Improvements</h3>
-                    <p>Played a key role in optimizing our systems, contributing to overall efficiency and improved user experience with faster response times. These enhancements have resulted in more stable and responsive services for our clients.</p>
+                    <p>Played a key role in optimizing our systems, contributing to overall efficiency and improved user experience with faster response times.</p>
                 </li>
                 <li class="achievement-item">
                     <h3>Technical Skill Expansion</h3>
-                    <p>Expanded technical stack to include AWS Redshift, Lambda, and EC2, enabling contribution to more complex projects and broader tech infrastructure. This growth in skills has allowed for more innovative solutions and improved system architectures.</p>
+                    <p>Expanded technical stack to include AWS Redshift, Lambda, and EC2, enabling contribution to more complex projects and broader tech infrastructure.</p>
                 </li>
             </ul>
         </section>
@@ -291,7 +346,7 @@
 
         <section id="vote" class="section">
             <h2>Why Your Vote Matters</h2>
-            <p>Your participation in this voting process is crucial. It helps us recognize and appreciate the hard work and dedication of our colleagues. Whether you choose to vote for Deepan or another deserving candidate, your voice matters in fostering a culture of appreciation and excellence at Roanuz.</p>
+            <p>Your participation in this voting process is crucial. It helps us recognize and appreciate the hard work and dedication of our colleagues. Your voice matters in fostering a culture of appreciation and excellence at Roanuz.</p>
             <a href="#" class="vote-button">Cast Your Vote</a>
         </section>
 
@@ -306,10 +361,9 @@
 
         <section id="about" class="section">
             <h2>About Deepan</h2>
-            <p>Deepan is a dedicated team member who has shown exceptional growth and contribution to Roanuz. His work on the Fantasy Points and Credits API, data importation, and system optimization has significantly improved our products and services. Deepan's commitment to expanding his technical skills demonstrates his passion for continuous learning and improvement.</p>
-            <p>Throughout his time at Roanuz, Deepan has consistently demonstrated a proactive approach to problem-solving and a keen ability to adapt to new technologies. His contributions have not only improved our technical capabilities but have also positively impacted our team dynamics and overall project efficiency.</p>
+            <p>Deepan is a dedicated team member who has shown exceptional growth and contribution to Roanuz. His work has significantly improved our products and services, demonstrating his passion for continuous learning and improvement.</p>
             <h3>Key Skills</h3>
-            <ul>
+            <ul class="skills-list">
                 <li>
                     <h3>Python</h3>
                 </li>
@@ -368,7 +422,7 @@
         goToTestimonial(0);
 
         // Auto-advance carousel every 5 seconds
-        setInterval(() => moveTestimonial(1), 2000);
+        setInterval(() => moveTestimonial(1), 5000);
     </script>
 </body>
 </html>
